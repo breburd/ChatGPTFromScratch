@@ -113,8 +113,6 @@ class GPTModel(torch.nn.Module):
 		super().__init__()
 
 		self.word_embeddings = CustomEmbedding(vocab_size, d_model)
-		# self.first_iteration = True
-		# self.position_embeddings = CustomEmbedding(max_seq_len, d_model)
 
 		self.layers = torch.nn.ModuleList()
 		for i in range(layers):
@@ -130,11 +128,7 @@ class GPTModel(torch.nn.Module):
 		positions = positions.repeat(B, 1)
 
 		w_emb = self.word_embeddings(x)
-		# if self.first_iteration:
-		# 	p_emb = self.position_embeddings(positions)
-		# 	self.first_iteration = False
-		# else:
-		# 	p_emb = self.rotary_embeddings(positions)
+		# no absolute position embeddings needed when using RoPE
 		x = w_emb
 
 		for layer in self.layers:
@@ -143,8 +137,6 @@ class GPTModel(torch.nn.Module):
 		logits = self.fc_out(x)
 
 		return logits
-
-
 
 
 if __name__ == "__main__":
