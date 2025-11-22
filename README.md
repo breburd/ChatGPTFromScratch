@@ -26,6 +26,8 @@ that performs all the experiments tested (trains on 2, 4, 8, and
 No additional libraries are required for the implementation
 of the RoPE algorithm.
 
+All code changes can be found within the `FinalProject` directory.
+
 The analysis performed to compare the RoPE implementation to the 
 absolute position embeddings is included for reference within the 
 `FinalProjectAnalysis.ipynb` Jupyter Notebook file.
